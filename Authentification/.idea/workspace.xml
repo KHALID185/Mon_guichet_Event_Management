@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="86024b36-adc4-4d7b-bb7b-940fc5e7384d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../SpringBoot/MS-To-Do-App/ToDoApp/Users/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../SpringBoot/To-Do-App-MS/User/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../SpringBoot/demo (2)/untitled/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../SpringBoot/demo (3)/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../SpringBoot/demo (3)/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../form/example1/example3/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../form/example1/exampleAOP/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../form/example1/untitled/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ToDoApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ToDoApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Entity/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Entity/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ToDoApp/src/main/java/com/example/demo/Service/TaskServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2dxPCasIJjucV5p21P00cNvttCr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Desktop/monguichet/project_e-commerce"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="86024b36-adc4-4d7b-bb7b-940fc5e7384d" name="Changes" comment="" />
+      <created>1710946632796</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710946632796</updated>
+    </task>
+    <servers />
+  </component>
+</project>
