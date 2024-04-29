@@ -1,8 +1,6 @@
 package com.monguichet.catalog.Repository;
 
-import java.awt.print.Pageable;
 
-import com.google.api.gax.paging.Page;
 import com.monguichet.catalog.Entity.Event;
 
 import org.springframework.data.jpa.repository.JpaRepository;
