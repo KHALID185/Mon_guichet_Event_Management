@@ -39,7 +39,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Authentification" options="-parameters" />
-      <module name="Catalog" options="" />
+      <module name="Catalog" options="-parameters" />
       <module name="Eureka" options="-parameters" />
       <module name="Order-service" options="-parameters" />
       <module name="Order2" options="-parameters" />
