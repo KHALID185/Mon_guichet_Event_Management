@@ -8,12 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="User-service" />
-        <module name="Ticket-service" />
+        <module name="Order2" />
         <module name="Product-service" />
         <module name="Authentification" />
         <module name="Order-service" />
         <module name="Review" />
-        <module name="config" />
+        <module name="User2-service" />
         <module name="Eureka" />
         <module name="gateway" />
         <module name="Catalog" />
@@ -38,11 +38,11 @@
       <module name="Catalog" options="-parameters" />
       <module name="Eureka" options="-parameters" />
       <module name="Order-service" options="-parameters" />
+      <module name="Order2" options="-parameters" />
       <module name="Payement" options="-parameters" />
       <module name="Review" options="-parameters" />
-      <module name="Ticket-service" options="-parameters" />
       <module name="User-service" options="-parameters" />
-      <module name="config" options="-parameters" />
+      <module name="User2-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
     </option>
   </component>
