@@ -2,25 +2,24 @@ package org.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.lang.NonNull;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-//@ComponentScan("org.example.Mapper") // Add this line
-//        (
-//        scanBasePackages = {
-//                "org.example.payment",
-//                "dev.nano.amqp"
-//        }
-//)
-//@EnableEurekaClient
-//@EnableFeignClients(
-//        basePackages = "dev.nano.clients"
-//)
-//@PropertySources({
-//        @PropertySource("classpath:amqp-${spring.profiles.active}.properties"),
-//        @PropertySource("classpath:clients-${spring.profiles.active}.properties")
-//})
 public class PaymentApplication {
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(@NonNull CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("*");
+            }
+        };
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(PaymentApplication.class, args);
     }
