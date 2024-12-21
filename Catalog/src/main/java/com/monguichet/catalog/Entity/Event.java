@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,9 +47,14 @@ public class Event {
 
     @Column(name = "Stock_Ticket")
     private Long Stock_Ticket;
+    @Column(name = "price_Ticket")
+    private BigDecimal price_Ticket;
 
     @Column(name = "subCategoryId")
     private long subCategoryId;
+
+    @Column(name = "categoryId")
+    private long categoryId;
 
     @Column(name = "url")
     private String url;

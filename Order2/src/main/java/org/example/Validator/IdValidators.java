@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class IdValidators {
 
-    public void validateOrderId(Integer orderId){
+    public void validateOrderId(Long orderId){
         if(orderId <= 0) throw new InvalidOrderIdException("Order id is Invalid");
     }
 
-    public void validateCustomerId(Integer customerId){
+    public void validateCustomerId(Long customerId){
         if(customerId <= 0) throw new InvalidCustomerIdException("Customer id is Invalid");
     }
 

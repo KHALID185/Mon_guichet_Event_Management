@@ -6,6 +6,8 @@ import com.monguichet.catalog.Entity.DTO.EventRequestDto;
 import com.monguichet.catalog.Entity.DTO.EventResponseDto;
 import com.monguichet.catalog.Entity.Event;
 import com.monguichet.catalog.Repository.EventRepo;
+import com.monguichet.catalog.exception.EventNotFoundException;
+import com.monguichet.catalog.exception.QuantityExceededException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,13 +17,63 @@ import org.springframework.stereotype.Service;
 import static com.monguichet.catalog.Utils.MappingProfile.mapToDto;
 
 import java.awt.print.Pageable;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class EventServiceImpl implements EventService {
     private final EventRepo eventRepo;
+
+    // Retrieve a specific product by its id
+
+    @Override
+    public EventResponseDto getEventById(Long id) {
+        Optional<Event> event = eventRepo.findById(id);
+        if(event.isEmpty())
+            throw new EventNotFoundException("Couldn't find event #"+id);
+
+        return MappingProfile.mapToDto(event.orElse(null));
+    }
+    // Retrieve the price of a specific item
+
+    @Override
+    public BigDecimal getEventPrice(Long id) {
+        Optional<Event> event = eventRepo.findById(id);
+        if(event.isEmpty())
+            throw new EventNotFoundException("Couldn't find event #"+id);
+
+        return event.get().getPrice_Ticket();
+    }
+
+    @Override
+    public String getEventName(Long id) {
+        Optional<Event> product = eventRepo.findById(id);
+        if(product.isEmpty())
+            throw new EventNotFoundException("Couldn't find event #"+id);
+
+        return product.get().getName();
+    }
+
+    // Deduct from the stock of a product after purchasing
+    @Override
+    public Boolean deductFromStock(Long id, Long quantity){
+        Optional<Event> event = eventRepo.findById(id);
+        if(event.isEmpty())
+            throw new EventNotFoundException("Couldn't find event with id #"+id);
+
+        Event eventFound = event.get();
+        if(eventFound.getStock_Ticket()<quantity)
+            throw new QuantityExceededException("Quantity requested from event #"+id+" is more than the quantity" +
+                    "present in the stock");
+
+        long newQuantity = eventFound.getStock_Ticket()-quantity;
+        eventFound.setStock_Ticket(newQuantity);
+        eventRepo.save(eventFound);
+        return true;
+    }
 
 // Afficher All Events
     @Override
@@ -64,6 +116,7 @@ public EventResponseDto updateEvent(Long id, EventRequestDto eventDto) {
     eventToUpdate.setUrl(eventDto.getUrl());
     eventToUpdate.setStock_Ticket(eventDto.getStock_Ticket());
     eventToUpdate.setSubCategoryId(eventDto.getSubCategoryId());
+    eventToUpdate.setPrice_Ticket(eventDto.getPrice_Ticket());
 
     Event updatedEvent = eventRepo.save(eventToUpdate);
     return MappingProfile.mapToDto(updatedEvent);
@@ -73,6 +126,17 @@ public EventResponseDto updateEvent(Long id, EventRequestDto eventDto) {
     public List<EventResponseDto> getEventsBySubCategoryId(Long subCategoryId) {
         // Retrieve events by subcategory ID
         List<Event> events = eventRepo.findBySubCategoryId(subCategoryId);
+
+        // Map the events to DTOs and return
+        return events.stream()
+                .map(MappingProfile::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventResponseDto> getEventsByCategoryId(Long categoryId) {
+        // Retrieve events by subcategory ID
+        List<Event> events = eventRepo.findByCategoryId(categoryId);
 
         // Map the events to DTOs and return
         return events.stream()

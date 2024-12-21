@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -26,5 +27,7 @@ public class EventResponseDto {
     private String url;
     private Long Stock_Ticket;
     private long subCategoryId;
+    private long categoryId;
+    private BigDecimal price_Ticket;
 
 }

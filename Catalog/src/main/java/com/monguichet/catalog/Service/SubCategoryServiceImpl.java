@@ -63,5 +63,17 @@ public class SubCategoryServiceImpl implements SubCategoryService{
     }
 
 
+    @Override
+    public SubCategoryResponseDto getSubCategoryNameById(Long id) {
+        SubCategory subCategory = subCategoryRepo.findById(id).orElse(null);
+        if (subCategory != null) {
+            SubCategoryResponseDto responseDto = new SubCategoryResponseDto();
+            responseDto.setId(subCategory.getId());
+            responseDto.setName(subCategory.getName());
+            return responseDto;
+        }
+        return null;
+    }
+
 
 }

@@ -19,7 +19,27 @@
     <file url="file://$PROJECT_DIR$/User-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/User2-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/User2-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/__auth-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/__auth-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_auth-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_auth-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_eureka-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_eureka-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_gateway-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_gateway-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_user-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_user-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-microservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-microservice/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice/src/main/resources" charset="UTF-8" />
   </component>
 </project>

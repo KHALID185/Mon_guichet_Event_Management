@@ -1,25 +1,22 @@
 package org.example.Config;
 
-import org.example.Entity.PaymentEntity;
-import org.example.Repository.PaymentRepository;
-import org.springframework.boot.CommandLineRunner;
+import com.paypal.base.rest.APIContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDateTime;
-
 @Configuration
-public class PaymentDbSeeder {
+public class PaypalConfig {
+
+    @Value("${paypal.client-id}")
+    private String clientId;
+    @Value("${paypal.client-secret}")
+    private String clientSecret;
+    @Value("${paypal.mode}")
+    private String mode;
 
     @Bean
-    CommandLineRunner commandLineRunner(PaymentRepository paymentRepository) {
-        return args -> {
-            PaymentEntity payment = PaymentEntity.builder()
-                    .customerId(1L)
-                    .orderId(1L)
-                    .createAt(LocalDateTime.now())
-                    .build();
-            paymentRepository.save(payment);
-        };
+    public APIContext apiContext() {
+        return new APIContext(clientId, clientSecret, mode);
     }
 }

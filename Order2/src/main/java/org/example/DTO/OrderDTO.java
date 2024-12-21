@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -13,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class OrderDTO {
-    private Integer orderId;
-    private Integer customerId;
+    private Long orderId;
+    private Long customerId;
     private LocalDateTime orderDate;
     private BigDecimal totalAmount;
     //   private Status orderStatus;

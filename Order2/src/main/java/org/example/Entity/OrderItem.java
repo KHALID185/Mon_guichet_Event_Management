@@ -16,21 +16,24 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id")
-    private Integer orderItemId;
+    private Long orderItemId;
 
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "order_id", insertable = false, updatable = false)
+    private Long orderId;
 
     @Column(name = "product_id")
-    private Integer productId;
+    private Long productId;
 
-    @Column(name = "quantity", nullable = false)
-    private Integer quantity;
+    @Column(name = "quantity")
+    private Long quantity;
 
-    @Column(name = "item_price", precision = 10, scale = 2, nullable = false)
+    @Column(name = "item_price", precision = 10, scale = 2)
     private BigDecimal itemPrice;
 
+    @Column(name = "sub_price", precision = 10, scale = 2)
+    private BigDecimal subtotal;
+
     @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 }

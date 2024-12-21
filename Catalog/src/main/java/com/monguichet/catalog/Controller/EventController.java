@@ -18,14 +18,36 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/event")
+@RequestMapping("/api/v1/category/subcategory/event")
 @AllArgsConstructor
 public class EventController {
 private final EventService eventService;
  private final EventRepo eventRepo;
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventResponseDto> getEventById(@PathVariable Long id){
+        return ResponseEntity.ok(eventService.getEventById(id));
+    }
+
+    @GetMapping("/price/{id}")
+    public ResponseEntity<BigDecimal> getEventPrice(@PathVariable Long id){
+        return ResponseEntity.ok(eventService.getEventPrice(id));
+    }
+
+    @GetMapping("/name/{id}")
+    public ResponseEntity<String> getEventName(@PathVariable Long id){
+        return ResponseEntity.ok(eventService.getEventName(id));
+    }
+
+    @PutMapping("/deduct")
+    public ResponseEntity<Boolean> deductFromStock(@RequestParam Long id, @RequestParam Long quantity){
+        return ResponseEntity.ok(eventService.deductFromStock(id,quantity));
+    }
 
  // Search All
    @GetMapping("/")
@@ -56,6 +78,13 @@ private final EventService eventService;
         List<EventResponseDto> events = eventService.getEventsBySubCategoryId(subCategoryId);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
+
+    @GetMapping("/by-category/{categoryId}")
+    public ResponseEntity<List<EventResponseDto>> getEventsByCategoryId(@PathVariable Long categoryId) {
+        List<EventResponseDto> events = eventService.getEventsByCategoryId(categoryId);
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         eventService.deleteEventById(id);

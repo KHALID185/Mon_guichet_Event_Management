@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/v1/subcategory")
+@RequestMapping("/api/v1/category/subcategory")
 @AllArgsConstructor
 public class SubCategoryController {
 
@@ -23,6 +23,17 @@ public class SubCategoryController {
     public ResponseEntity<List<SubCategoryResponseDto>> getAllSubCategory() {
         List<SubCategoryResponseDto> subCategory = subCategoryService.getAllSubCategory();
         return new ResponseEntity<>(subCategory, HttpStatus.OK);
+    }
+    ///////////////////////
+// get subcategori name by id
+    @GetMapping("/{id}") // Modification de l'annotation pour éviter le conflit
+    public ResponseEntity<SubCategoryResponseDto> getSubCategoryById(@PathVariable Long id) {
+        try {
+            SubCategoryResponseDto subCategory = subCategoryService.getSubCategoryNameById(id);
+            return new ResponseEntity<>(subCategory, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
     // Endpoint to get subcategories by category ID
     @GetMapping("/by-category/{categoryId}")
@@ -62,6 +73,8 @@ public class SubCategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 
 }

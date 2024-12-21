@@ -15,4 +15,6 @@ public interface SubCategoryService {
     void deleteSubCategory(Long id) throws Exception;
 
     List<SubCategoryResponseDto> getSubCategoriesByCategoryId(Long categoryId);
+
+    SubCategoryResponseDto getSubCategoryNameById(Long id);
 }

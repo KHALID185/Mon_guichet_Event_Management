@@ -8,6 +8,7 @@ import org.example.Exception.InvalidCustomerIdException;
 import org.example.Exception.InvalidDateRangeException;
 import org.example.Exception.InvalidOrderIdException;
 import org.example.Exception.OrderNotFoundException;
+import org.example.Feign.EventServiceClient;
 import org.example.Mapper.OrderMapper;
 import org.example.Service.OrderService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,15 +25,14 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderController {
     OrderService orderService;
-//    PurchaseServiceIClient purchaseServiceIClient;
-//    OrderProducer orderProducer;
     OrderMapper orderMapper;
+    private final EventServiceClient eventServiceClient;
 
 
     @PostMapping("/create")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         try {
-            OrderDTO createdOrder = orderService.save(orderMapper.convertToEntity(orderDTO));
+            OrderDTO createdOrder = orderService.save(orderDTO);
             return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -40,15 +40,19 @@ public class OrderController {
     }
 
     // Get a list of all orders
-    @GetMapping
-    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+    @GetMapping("/orders")
+    public ResponseEntity<List<OrderDTO>> getAllOrders(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
         try {
-            List<OrderDTO> orders = orderService.findAll();
+            List<OrderDTO> orders = orderService.findAll(page, size);
             return new ResponseEntity<>(orders, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
     // Get a specific order by ID
     @GetMapping("/{orderId}")
@@ -67,7 +71,7 @@ public class OrderController {
 
     // Update an existing order
     @PutMapping("/{orderId}")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable int orderId, @RequestBody OrderDTO updatedOrder) {
+    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO updatedOrder) {
         try{
             OrderDTO updated = orderService.update(orderId,orderMapper.convertToEntity(updatedOrder));
             return new ResponseEntity<>(updated, HttpStatus.OK);
@@ -148,9 +152,9 @@ public class OrderController {
 
 
 
-    @PostMapping("/submit")
-    public ResponseEntity<List<OrderItemDTO>> submitOrder(@RequestBody List<OrderItemDTO> orderItemDTOS){
-        return new ResponseEntity<>(orderService.submitOrder(orderItemDTOS), HttpStatus.OK);
-    }
+//    @PostMapping("/submit")
+//    public ResponseEntity<List<OrderItemDTO>> submitOrder(@RequestBody List<OrderItemDTO> orderItemDTOS){
+//        return new ResponseEntity<>(orderService.submitOrder(orderItemDTOS), HttpStatus.OK);
+//    }
 
 }

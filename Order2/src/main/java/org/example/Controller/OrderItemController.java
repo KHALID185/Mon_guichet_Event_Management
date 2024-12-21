@@ -25,7 +25,7 @@ public class OrderItemController {
 
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<List<OrderItemDTO>> getOrderItems(@PathVariable Integer orderId) {
+    public ResponseEntity<List<OrderItemDTO>> getOrderItems(@PathVariable Long orderId) {
         try {
             List<OrderItemDTO> orderItemDTOS = orderItemService.findByOrderId(orderId);
             return new ResponseEntity<>(orderItemDTOS, HttpStatus.OK);
@@ -38,7 +38,7 @@ public class OrderItemController {
     }
 
     @GetMapping("/item/{id}")
-    public ResponseEntity<OrderItemDTO> getOrderItem(@PathVariable Integer id) {
+    public ResponseEntity<OrderItemDTO> getOrderItem(@PathVariable Long id) {
         try {
             OrderItemDTO orderItemDTO = orderItemService.getOrderItemById(id);
             return new ResponseEntity<>(orderItemDTO, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class OrderItemController {
 
     // Update an order item
     @PutMapping("/{id}")
-    public ResponseEntity<OrderItemDTO> updateOrderItem(@PathVariable Integer id, @RequestBody OrderItemDTO orderItemDTO) {
+    public ResponseEntity<OrderItemDTO> updateOrderItem(@PathVariable Long id, @RequestBody OrderItemDTO orderItemDTO) {
         try {
             OrderItemDTO updatedOrderItem = orderItemService.updateOrderItem(id, orderItemMapper.convertToEntity(orderItemDTO));
             return new ResponseEntity<>(updatedOrderItem, HttpStatus.OK);
@@ -70,7 +70,7 @@ public class OrderItemController {
 
     // Delete an order item by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteOrderItem(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteOrderItem(@PathVariable Long id) {
         try {
             orderItemService.deleteOrderItem(id);
             return new ResponseEntity<>("Order item deleted successfully", HttpStatus.NO_CONTENT);

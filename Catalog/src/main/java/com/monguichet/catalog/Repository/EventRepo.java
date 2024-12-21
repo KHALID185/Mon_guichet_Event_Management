@@ -12,6 +12,8 @@ import java.util.List;
 public interface EventRepo extends JpaRepository<Event, Long> {
 
     List<Event> findBySubCategoryId(Long id);
+
+    List<Event> findByCategoryId(Long id);
     List<Event> findByNameContainingIgnoreCase(String keyword);
 
     List<Event> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
