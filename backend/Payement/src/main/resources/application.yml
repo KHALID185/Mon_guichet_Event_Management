@@ -1,0 +1,7 @@
+server:
+  port: 8099
+
+paypal:
+  client-id: AQnGdgCYRLZdThGAcw-3Uhf_Pd4dTPhOLfirjjOWhCUJw_rLVvNv5wANVAeB-oW0daG9jpcOtm_yyV9v
+  client-secret: EBnCToQQ0W4IXzTjD62lJo5nq_UX89gtBZn0VOE2_Kn0YkVNwQHDLpuoPPrLon5MsaIRWYfIyfp3xZpN
+  mode: sandbox # Use #sandbox' for testing and 'live' for Production
