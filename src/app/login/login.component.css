@@ -1,0 +1,31 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Cela permet de couvrir toute la hauteur de la fenêtre */
+  }
+  
+  .login-form {
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .logout-button {
+    background-color: blue;
+    color: white;
+  }
+  
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+  }
+  .greeting {
+    font-weight: bold;
+  }

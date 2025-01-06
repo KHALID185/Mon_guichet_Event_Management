@@ -1,0 +1,54 @@
+nz-date-picker, nz-form-label {
+  margin-left: 12px;
+}
+
+nz-input-number[name="ticketPrice"] {
+  margin-left: 12px; /* Modification: Déplacer l'entrée de prix vers la gauche */
+}
+
+nz-form-item[nz-form-label="Prix"] {
+  margin-left: 12px; /* Modification: Déplacer le titre "Prix" vers la gauche */
+}
+
+.add-event-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: -16px;
+}
+
+.titles-row, .inputs-row {
+  display: flex;
+}
+
+.titles-row nz-form-item, .inputs-row nz-form-item {
+  flex: 1;
+}
+
+.description-wrapper {
+  width: 100%;
+}
+
+.upload-image-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -16px;
+}
+
+.upload-image {
+  flex: 1;
+}
+
+.image-preview {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  margin-top: -16px;
+}
+
+.add-event-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}

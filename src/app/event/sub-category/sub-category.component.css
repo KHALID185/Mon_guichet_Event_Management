@@ -1,0 +1,16 @@
+ 
+
+.input-container {
+  width: 200px;
+  margin-right: 18px;
+}
+
+ 
+
+.action-link {
+  margin-right: 25px; /* Ajoutez plus d'espace entre les liens */
+}
+
+.save {
+  margin-right: 8px;
+}

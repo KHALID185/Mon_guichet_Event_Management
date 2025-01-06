@@ -1,0 +1,39 @@
+<form #categoryForm="ngForm" (ngSubmit)="addCategory()">
+  <div style="margin-bottom: 8px;">
+    <input nz-input name="categoryName" placeholder="Enter Category Name" [(ngModel)]="newCategoryName" style="width: 200px; margin-right: 8px;" required />
+    <button nz-button nzType="primary" type="submit">Add Category</button>
+  </div>
+</form>
+
+<nz-table #editRowTable nzBordered [nzData]="listOfData" [nzShowPagination]="false" [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems">
+  <thead>
+    <tr>
+      <th nzWidth="25%">ID</th>
+      <th nzWidth="50%">Name</th>
+      <th>Action</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of listOfData">
+      <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+        <td>{{ data.id }}</td>
+        <td>{{ data.name }}</td>
+        <td>
+          <a (click)="startEdit(data.id)" class="action-link">Edit <span nz-icon nzType="edit" nzTheme="outline"></span> </a>
+          <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)" class="action-link">
+              Delete <span nz-icon nzType="delete" nzTheme="outline"></span></a>
+        </td>
+      </ng-container>
+      <ng-template #editTemplate>
+        <td>{{ data.id }}</td>
+        <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.name" /></td>
+        <td>
+          <a (click)="saveEdit(data.id)" class="save">Save</a>
+          <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</nz-table>
+<br>
+<nz-pagination [(nzPageIndex)]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>

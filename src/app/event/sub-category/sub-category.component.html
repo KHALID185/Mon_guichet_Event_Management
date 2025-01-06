@@ -1,0 +1,46 @@
+<div style="margin-bottom: 8px;">
+    <input nz-input placeholder="Enter Subcategory Name" [(ngModel)]="newSubcategoryName" style="width: 200px; margin-right: 8px;">
+    <nz-select style="width: 200px;" [(ngModel)]="selectedCategoryId">
+        <nz-option *ngFor="let category of categoryList" [nzValue]="category.id" [nzLabel]="category.name"></nz-option>
+    </nz-select>
+    <button nz-button nzType="primary" (click)="addRow()">Add Subcategory</button>
+</div>
+ 
+<nz-table #editRowTable nzBordered [nzData]="listOfData" [nzShowPagination]="false" [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems">
+    <thead>
+        <tr>
+            <th nzWidth="8%">ID</th>
+            <th nzWidth="35%">Name</th>
+            <th nzWidth="25%">Category</th>
+            <th nzWidth="25%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listOfData">
+            <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+                <td>{{ data.id }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ getCategoryName(data.categoryId) }}</td>
+                <td>
+                    <a (click)="startEdit(data.id)" class="action-link">Edit <span nz-icon nzType="edit" nzTheme="outline"></span> </a>
+                    <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)" class="action-link">
+                        Delete <span nz-icon nzType="delete" nzTheme="outline"></span></a>
+                </td>
+            </ng-container>
+            <ng-template #editTemplate>
+                <td>{{ data.id }}</td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.name" /></td>
+                <td>{{ getCategoryName(editCache[data.id].data.categoryId) }}</td>
+                <td>
+                    <a (click)="saveEdit(data.id)" class="save">Save</a>
+                    <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</nz-table>
+<br>
+<nz-pagination [(nzPageIndex)]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+
+
+

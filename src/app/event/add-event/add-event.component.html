@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Event</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ng-zorro-antd@12.0.0-alpha.0/dist/ng-zorro-antd.min.css">
+</head>
+
+<body>
+  <form class="add-event-form" (ngSubmit)="addEvent()">
+    <!-- First Row: Titles -->
+    <div class="titles-row">
+      <nz-form-item>
+        <nz-form-label>Nom de l'événement</nz-form-label>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Date</nz-form-label>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Sous-catégorie</nz-form-label>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Prix</nz-form-label>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Stock</nz-form-label>
+      </nz-form-item>
+    </div>
+
+    <!-- Second Row: Inputs -->
+    <div class="inputs-row">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzSuffix]="clearIconNameTpl">
+            <input nz-input [(ngModel)]="eventName" name="eventName" placeholder="Entrez le nom de l'événement" required />
+          </nz-input-group>
+        </nz-form-control>
+        <ng-template #clearIconNameTpl>
+          <i *ngIf="eventName" nz-icon nzType="close-circle" nzTheme="fill" class="ant-input-clear-icon" (click)="eventName = null"></i>
+        </ng-template>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-date-picker [(ngModel)]="eventDate" name="eventDate" nzFormat="yyyy-MM-dd" nzPlaceHolder="Sélectionner la date" required></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-select [(ngModel)]="selectedSubcategory" name="selectedSubcategory" nzPlaceHolder="Sélectionner une sous-catégorie" required>
+            <nz-option *ngFor="let subcategory of subcategories" [nzLabel]="subcategory.name" [nzValue]="subcategory.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-number [(ngModel)]="ticketPrice" name="ticketPrice" [nzMin]="0" [nzStep]="1" required></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-number [(ngModel)]="ticketStock" name="ticketStock" [nzMin]="0" [nzStep]="1" required></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <!-- Description -->
+    <nz-form-item class="description-wrapper">
+      <nz-form-label>Description :</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input [(ngModel)]="eventDescription" name="eventDescription" placeholder="Entrez la description de l'événement" required></textarea>
+        <i *ngIf="eventDescription" nz-icon nzType="close-circle" nzTheme="fill" class="ant-input-clear-icon" (click)="eventDescription = null"></i>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Upload and Image -->
+    <div class="upload-image-row">
+      <nz-form-item class="upload-image">
+        <nz-form-control>
+          <nz-upload nzListType="picture" [(nzFileList)]="fileList1" (nzChange)="onFileSelected($event)">
+            <button nz-button>
+              <span nz-icon nzType="upload"></span>
+              Upload
+            </button>
+          </nz-upload>
+        </nz-form-control>
+
+        <!-- Submit Button -->
+        <div class="add-event-button">
+          <button nz-button nzType="primary">{{ eventId ? 'Modifier' : 'Ajouter' }} l'événement</button>
+        </div>
+      </nz-form-item>
+      <nz-form-item class="image-preview">
+        <nz-form-control>
+          <a *ngIf="imageUrl" [href]="imageUrl" target="_blank">
+            <img width="200px" height="200px" [src]="imageUrl" alt="Event Image">
+          </a>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </form>
+</body>
+
+</html>

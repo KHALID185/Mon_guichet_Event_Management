@@ -1,0 +1,81 @@
+<div class="table-wrapper">
+  <nz-table #editRowTable nzBordered [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th nzWidth="5%">ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        
+        <th>Role</th>
+    
+        <th>Statut</th>
+        <th>Statut Switch</th>
+       
+        
+     
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of listOfData; let i = index">
+      
+        <td>{{ user.userId }}</td>
+        <td>
+          <ng-container *ngIf="!isEditing(user, 'firstname'); else editFirstName">
+            {{ user.firstname }}
+          </ng-container>
+          <ng-template #editFirstName>
+            <input type="text" nz-input [(ngModel)]="editCache[user.userId].data.firstname" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!isEditing(user, 'lastname'); else editLastName">
+            {{ user.lastname }}
+          </ng-container>
+          <ng-template #editLastName>
+            <input type="text" nz-input [(ngModel)]="editCache[user.userId].data.lastname" />
+          </ng-template>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <ng-container *ngIf="!isEditing(user, 'numberPhone'); else editNumberPhone">
+            {{ user.numberPhone }}
+          </ng-container>
+          <ng-template #editNumberPhone>
+            <input type="text" nz-input [(ngModel)]="editCache[user.userId].data.numberPhone" />
+          </ng-template>
+        </td>
+        <td>{{ user.roles[0].role }}</td>
+        <td>{{ user.isActive }}</td>
+
+<!--
+<td>          <nz-switch [ngModel]="user.isActive" (ngModelChange)="onSwitchChange($event, user)"></nz-switch>
+</td> -->
+
+<td>
+  <ng-container [ngSwitch]="contenu_isactive[i]">
+    <nz-switch *ngSwitchCase="true" [ngModel]="contenu_isactive[i]" (ngModelChange)="onSwitchChange($event, user)"></nz-switch>
+    <nz-switch *ngSwitchCase="false" [ngModel]="contenu_isactive[i]" (ngModelChange)="onSwitchChange($event, user)"></nz-switch>
+  </ng-container>
+</td>
+
+        
+       
+        <td>
+          <ng-container *ngIf="!isEditing(user); else editActions">
+            <a (click)="startEdit(user)" class="action-link">Edit <span nz-icon nzType="edit" nzTheme="outline"></span></a>
+          </ng-container>
+          <ng-template #editActions>
+            <a (click)="saveEdit(user.userId)" class="save">Save</a>
+            <a nz-popconfirm nzPopconfirmTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(user)" class="action-link">Cancel</a>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<nz-pagination [(nzPageIndex)]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>

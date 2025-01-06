@@ -1,0 +1,8 @@
+<!--<p>test works!</p>
+<nz-switch [(ngModel)]="switchValue"></nz-switch>
+-->
+
+ 
+
+<p>switchValue : {{ switchValue }}</p>
+<nz-switch [ngModel]="switchValue === 'ACTIVE'" (ngModelChange)="onSwitchChange($event)"></nz-switch>

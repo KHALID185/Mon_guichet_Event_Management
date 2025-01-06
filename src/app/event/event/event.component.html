@@ -1,0 +1,37 @@
+<div style="margin-bottom: 8px;">
+  <button nz-button nzType="primary" (click)="goToAddEvent()">Add Event</button>
+</div>
+
+<div class="table-wrapper">
+  <nz-table #editRowTable nzBordered [nzData]="listOfData" [nzShowPagination]="false">
+      <thead>
+          <tr>
+              <th nzWidth="4%">ID</th>
+              <th  >Name</th>
+              <th nzWidth="15%">Created At</th>
+              <th nzWidth="15%">Due Date</th>
+              <th nzWidth="10%">Subcategory</th> <!-- Nouvelle colonne pour la sous-catégorie -->
+              <th nzWidth="1%">Price Ticket</th>
+              <th nzWidth="2%">Stock Ticket</th>
+              <th nzWidth="25%">Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let data of listOfData">
+              <td>{{ data.id }}</td>
+              <td>{{ data.name }}</td>
+              <td>{{ formatDate(data.createdAt) }}</td>
+              <td>{{ formatDate(data.dueDate) }}</td>
+              <td>{{ data.subCategoryName }}</td> <!-- Affichage de la sous-catégorie -->
+              <td>{{ data.price_Ticket }}</td>
+              <td>{{ data.stock_Ticket }}</td>
+              <td>
+                  <a (click)="goToEditEvent(data.id)" class="action-link">Edit <span nz-icon nzType="edit" nzTheme="outline"></span></a>
+                  <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteEvent(data.id)" class="action-link">Delete <span nz-icon nzType="delete" nzTheme="outline"></span></a>
+              </td>
+          </tr>
+      </tbody>
+  </nz-table>
+</div>
+<br>
+<nz-pagination [(nzPageIndex)]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>

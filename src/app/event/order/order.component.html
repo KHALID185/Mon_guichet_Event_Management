@@ -1,0 +1,30 @@
+<div class="table-wrapper">
+    <nz-table #editRowTable nzBordered [nzData]="listOfData">
+      <thead>
+        <tr>
+          <th nzWidth="5%">ID</th>
+          <th>Customer Name</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Total Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of listOfData">
+          <td>{{ order.orderId }}</td>
+          <td>{{ order.customerName }}</td>
+          <td>{{ order.orderDate }}</td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.totalAmount }}</td>
+          <td>
+            <a (click)="editOrder(order.orderId)" class="action-link">Edit <span nz-icon nzType="edit" nzTheme="outline"></span></a>
+            <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteOrder(order.orderId)" class="action-link">Delete <span nz-icon nzType="delete" nzTheme="outline"></span></a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  
+  <nz-pagination [(nzPageIndex)]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+  
